@@ -19,6 +19,23 @@ var save_content = function(){
 	})
 }
 
+var link_links_to_blocks = function(){
+	links_data.forEach(function(link){
+		var result = $.grep(blocks_data,function(d){
+			return d.x == link.parent.x;
+		});
+		if (result.length > 0){
+			link.parent = result[0];
+		}
+		result = $.grep(blocks_data,function(d){
+			return d.x == link.child.x;
+		});
+		if (result.length>0){
+			link.child = result[0];
+		}
+	});
+}
+
 var create_svg = function(){
 	var svgContainer = d3.select('#chart').append('svg').attr("width", window.innerWidth).attr("height", window.innerHeight);
 }
