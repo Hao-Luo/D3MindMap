@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Mind Map</title>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3-dispatch.v1.min.js"></script>
+<script src="https://d3js.org/d3-selection.v1.min.js"></script>
+<script src="https://d3js.org/d3-drag.v1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='style/style.css')}}">
+</head>
+
+<body>
+
+<h1>Mind Map</h1>
+<!--<button id="insert_mode" onclick="insert_mode()">Insert Mode : On</button>-->
+<button id='save' onclick='save_content()'> Save </button>
+<div id ='chart'></div>
+
+</body>
+
+<span id ='text_size_calculator'>Enter Content</div>
+    <script src ="{{url_for('static',filename='scripts/scripts.js')}}"></script>
+    <script>
+	post_content = JSON.parse('{{content|tojson|safe}}');
+	if(post_content.blocks_data != null){
+		blocks_data = JSON.parse(post_content.blocks_data.replace(/'/g, '"'));}
+	if(post_content.links_data !=null){
+	links_data = JSON.parse(post_content.links_data.replace(/'/g, '"'));
+	}
+	update_blocks();
+    </script>
+</html>
